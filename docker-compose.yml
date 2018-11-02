@@ -1,0 +1,6 @@
+web:
+    image: heads
+    ports:
+        - 8000
+    volumes:
+        - ./:/app
