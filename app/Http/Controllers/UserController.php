@@ -38,19 +38,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6',
-        ]);
+        User::validator($request);
 
-        User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
+        if ($request['password'] === null) {
+            User::create($request->except('password'));
+        } else {
+            User::create(array_merge($request->only('name', 'email'), ['password' => Hash::make($request['password'])]));
+        }
 
-        return route('users');
+        return redirect()->route('users');
     }
 
     /**
@@ -72,9 +68,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $item = User::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        return view('users.create_edit', compact('item'));
+        return view('users.create_edit', compact('user'));
     }
 
     /**
@@ -86,13 +82,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, User::rules(true, $id));
+        User::validator($request, true);
 
-        $item = User::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        $item->update($request->all());
+        if ($request['password'] === null) {
+            $user->update($request->except('password'));
+        } else {
+            $user->update(array_merge($request->only('name', 'email'), ['password' => Hash::make($request['password'])]));
+        }
 
-        return redirect()->route('users.index');
+        return redirect()->route('users');
     }
 
     /**
@@ -105,6 +105,6 @@ class UserController extends Controller
     {
         User::destroy($id);
 
-        return back()->withSuccess(trans('app.success_destroy'));
+        return back();
     }
 }

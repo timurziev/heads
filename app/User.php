@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -27,4 +27,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /*
+    * Validation
+    */
+    public static function validator($request, $update = false) {
+
+        if ($update) {
+            return $request->validate([
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255',
+                'password' => 'nullable',
+            ]);
+        }
+
+        return $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6',
+        ]);
+    }
 }
