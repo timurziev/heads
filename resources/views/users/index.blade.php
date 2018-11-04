@@ -34,7 +34,7 @@
                                                 <form class="float-left ml-2" action="{{ route('users.delete', $user->id )}}" method="post">
                                                     {!! method_field('delete') !!}
                                                     {{ csrf_field() }}
-                                                    <button onclick="return confirm('Вы действительно хотите удалить пользователя!');" type="submit" class="btn btn-outline-success btn-sm">Удалить</button>
+                                                    <button onclick="return confirm('Вы действительно хотите удалить пользователя?');" type="submit" class="btn btn-outline-success btn-sm">Удалить</button>
                                                 </form>
                                             </td>
                                         </tr>

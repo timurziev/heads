@@ -25,6 +25,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('schedule', 'ApiController@index');
     Route::post('schedule/time', 'ApiController@makeSchedule')->name('schedule');
+
+    Route::get('cities', 'CityController@index');
+    Route::get('cities/create', 'CityController@create')->name('cities.create');
+    Route::post('cities/store', 'CityController@store')->name('cities.store');
+    Route::delete('cities/delete/{id}', 'CityController@destroy')->name('cities.delete');
 });
 
 Auth::routes();
