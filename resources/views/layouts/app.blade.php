@@ -11,6 +11,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-clockpicker.min.js') }}"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -19,22 +22,23 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-clockpicker.min.css') }}">
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5">
     <div class="container d-flex justify-content-between">
-        <a class="navbar-brand" href="{{ url('/') }}">Heads&hands</a>
+        <a class="navbar-brand" href="{{ url('/users') }}">Heads&hands</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item {{ Request::is('/users') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('/users') }}">Главная</a>
+                <li class="nav-item {{ Request::is('users') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('users') }}">Главная</a>
                 </li>
-                {{--<li class="nav-item {{ Request::is('news') ? 'active' : '' }}">--}}
-                    {{--<a class="nav-link" href="{{ route('news') }}">Новости</a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-item {{ Request::is('gallery') ? 'active' : '' }}">--}}
-                    {{--<a class="nav-link" href="{{ url('gallery') }}">Галерея</a>--}}
-                {{--</li>--}}
+                <li class="nav-item {{ Request::is('schedule') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('schedule') }}">Расписание</a>
+                </li>
+                <li class="nav-item {{ Request::is('cities') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('cities') }}">Города</a>
+                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">

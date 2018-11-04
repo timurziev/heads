@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest('updated_at')->get();
+        $users = User::latest('updated_at')->paginate(10);
 
         return view('users.index', compact('users'));
     }
