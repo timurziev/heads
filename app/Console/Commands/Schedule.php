@@ -40,6 +40,10 @@ class Schedule extends Command
     {
         $cities = City::all();
 
-        dd($cities);
+        foreach ($cities as $city) {
+            $url = file_get_contents('https://api.openweathermap.org/data/2.5/weather?q=' .$city->name. '&appid=' . \Config::get('api.open_weather_map_id'));
+            $data = collect(json_decode($url, true));
+            $city->update(['current_temp' => $data['main']['temp']]);
+        }
     }
 }

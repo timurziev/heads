@@ -39,6 +39,9 @@
                 <li class="nav-item {{ Request::is('cities') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('cities') }}">Города</a>
                 </li>
+                <li class="nav-item {{ Request::is('weather') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('api/weather') }}">Погода API</a>
+                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">

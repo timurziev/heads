@@ -17,6 +17,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Название</th>
+                                <th scope="col">temp</th>
                                 <th scope="col">Действие</th>
                             </tr>
                             </thead>
@@ -25,6 +26,7 @@
                                 <tr>
                                     <th scope="row">{{ $key + 1 }}</th>
                                     <td>{{ $city->name }}</td>
+                                    <td>{{ $city->current_temp }}</td>
                                     <td>
                                         <form class="float-left ml-2" action="{{ route('cities.delete', $city->id )}}" method="post">
                                             {!! method_field('delete') !!}
