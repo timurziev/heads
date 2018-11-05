@@ -40,11 +40,7 @@ class UserController extends Controller
     {
         User::validator($request);
 
-        if ($request['password'] === null) {
-            User::create($request->except('password'));
-        } else {
-            User::create(array_merge($request->only('name', 'email'), ['password' => Hash::make($request['password'])]));
-        }
+        User::create($request->all());
 
         return redirect()->route('users');
     }
