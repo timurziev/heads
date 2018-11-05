@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Login') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ url('api/weather/logged') }}">
+                        <form method="POST" action="{{ url('api/auth') }}">
                             @csrf
 
                             <div class="form-group row">

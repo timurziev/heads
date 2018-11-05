@@ -27,7 +27,7 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5">
     <div class="container d-flex justify-content-between">
-        <a class="navbar-brand" href="{{ url('/users') }}">Heads&hands</a>
+        <a class="navbar-brand" href="{{ url('/') }}">Heads&hands</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item {{ Request::is('users') ? 'active' : '' }}">
@@ -38,9 +38,6 @@
                 </li>
                 <li class="nav-item {{ Request::is('cities') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('cities') }}">Города</a>
-                </li>
-                <li class="nav-item {{ Request::is('weather') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('api/weather') }}">Погода API</a>
                 </li>
             </ul>
 

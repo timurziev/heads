@@ -13,8 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('api')->get('/weather', function (Request $request) {
+Route::get('/auth', function () {
     return view('api.login');
 });
 
-Route::middleware('api')->post('/weather/logged', 'APILoginController@login');
+Route::post('/auth', 'APIController@login');
+Route::get('/weather', 'APIController@getWeather');
