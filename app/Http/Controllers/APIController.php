@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 use App\City;
 
 class APIController extends Controller
@@ -82,6 +80,11 @@ class APIController extends Controller
         ]);
     }
 
+    /**
+     * Get weather in json format
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getWeather() {
         $cities = City::get(['name', 'current_temp'])->toArray();
 

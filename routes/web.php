@@ -23,8 +23,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('users/update/{id}', 'UserController@update')->name('users.update');
     Route::delete('users/delete/{id}', 'UserController@destroy')->name('users.delete');
 
-    Route::get('schedule', 'ApiController@index');
-    Route::post('schedule/time', 'ApiController@makeSchedule')->name('schedule');
+    Route::get('schedule', function () {
+        return view('schedule');
+    });
+    Route::post('schedule/time', 'ScheduleController@makeSchedule')->name('schedule');
 
     Route::get('cities', 'CityController@index');
     Route::get('cities/create', 'CityController@create')->name('cities.create');

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Cache;
 
-class HomeController extends Controller
+class ScheduleController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,12 +18,12 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Cache time when weather will be scheduled
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
      */
-    public function index()
+    public function makeSchedule(Request $request)
     {
-        return view('home');
+        Cache::forever('time_schedule', $request['time']);
     }
 }
